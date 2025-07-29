@@ -111,6 +111,21 @@ const Demo = () => {
     }
   };
 
+  // Custom tooltip component for the PieChart
+  const CustomPieTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      const data = payload[0];
+      return (
+        <div className="bg-slate-800/95 backdrop-blur-sm border border-slate-600/50 rounded-lg px-3 py-2 shadow-xl">
+          <p className="text-slate-200 font-medium text-sm">
+            {data.name}: <span className="text-white font-bold">{data.value}</span>
+          </p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   if (selectedCall) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 p-6">
@@ -257,14 +272,7 @@ const Demo = () => {
                       <Cell key={`cell-${index}`} fill={entry.color} />
                     ))}
                   </Pie>
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
-                      borderRadius: '8px',
-                      color: '#F9FAFB'
-                    }}
-                  />
+                  <Tooltip content={<CustomPieTooltip />} />
                 </PieChart>
               </ResponsiveContainer>
             </CardContent>

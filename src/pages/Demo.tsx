@@ -128,11 +128,14 @@ const Demo = () => {
             <p className="text-slate-300">AI-Powered Call Analytics for Smart Investment Decisions</p>
           </div>
           <div className="flex space-x-3">
-            <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+            <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg">
               <Mic className="mr-2 h-4 w-4" />
               Start Call Recording
             </Button>
-            <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+            <Button 
+              variant="outline" 
+              className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
+            >
               <BarChart3 className="mr-2 h-4 w-4" />
               Generate Report
             </Button>
@@ -271,7 +274,11 @@ const Demo = () => {
         <Card className="bg-white/10 backdrop-blur-md border-white/20">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Recent Calls</CardTitle>
-            <Button variant="outline" size="sm" className="border-white/20 text-white hover:bg-white/10">
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
+            >
               View All
             </Button>
           </CardHeader>
@@ -327,7 +334,7 @@ const Demo = () => {
               <p className="text-slate-300 mb-4">
                 Automatic speech-to-text conversion with speaker identification and timestamps
               </p>
-              <Button className="bg-blue-600 hover:bg-blue-700 text-white">
+              <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg">
                 Start Recording
               </Button>
             </CardContent>
@@ -342,7 +349,7 @@ const Demo = () => {
               <p className="text-slate-300 mb-4">
                 AI-powered emotion detection and sentiment tracking throughout the conversation
               </p>
-              <Button className="bg-green-600 hover:bg-green-700 text-white">
+              <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg">
                 Analyze Sentiment
               </Button>
             </CardContent>
@@ -357,7 +364,7 @@ const Demo = () => {
               <p className="text-slate-300 mb-4">
                 Automated extraction of key topics, concerns, and investment decision factors
               </p>
-              <Button className="bg-purple-600 hover:bg-purple-700 text-white">
+              <Button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg">
                 Extract Insights
               </Button>
             </CardContent>

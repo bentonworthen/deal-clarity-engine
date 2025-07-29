@@ -107,7 +107,7 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
             variant="outline" 
             size="sm" 
             onClick={onBack}
-            className="border-white/20 text-white hover:bg-white/10"
+            className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Calls
@@ -118,11 +118,14 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
           </div>
         </div>
         <div className="flex space-x-3">
-          <Button className="bg-blue-600 hover:bg-blue-700">
+          <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg">
             <Download className="mr-2 h-4 w-4" />
             Export Report
           </Button>
-          <Button variant="outline" className="border-white/20 text-white hover:bg-white/10">
+          <Button 
+            variant="outline" 
+            className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
+          >
             <Share2 className="mr-2 h-4 w-4" />
             Share Analysis
           </Button>
@@ -190,14 +193,24 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
                 <div className="flex justify-between items-center">
                   <span className="text-slate-300">Overall Score</span>
                   <div className="flex items-center space-x-2">
-                    <Progress value={keyMetrics.overallScore * 10} className="w-20" />
+                    <div className="w-20 bg-slate-700 rounded-full h-2">
+                      <div 
+                        className="h-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-400" 
+                        style={{ width: `${keyMetrics.overallScore * 10}%` }}
+                      />
+                    </div>
                     <span className="text-white font-bold">{keyMetrics.overallScore}/10</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
                   <span className="text-slate-300">Confidence Level</span>
                   <div className="flex items-center space-x-2">
-                    <Progress value={keyMetrics.confidenceLevel} className="w-20" />
+                    <div className="w-20 bg-slate-700 rounded-full h-2">
+                      <div 
+                        className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" 
+                        style={{ width: `${keyMetrics.confidenceLevel}%` }}
+                      />
+                    </div>
                     <span className="text-white font-bold">{keyMetrics.confidenceLevel}%</span>
                   </div>
                 </div>
@@ -284,9 +297,14 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
                         </span>
                       </div>
                     </div>
-                    <div className="flex justify-between text-sm">
+                    <div className="flex justify-between items-center text-sm">
                       <span className="text-slate-400">Duration: {topic.duration}</span>
-                      <Progress value={topic.sentiment * 10} className="w-24" />
+                      <div className="w-24 bg-slate-700 rounded-full h-2">
+                        <div 
+                          className="h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-400" 
+                          style={{ width: `${topic.sentiment * 10}%` }}
+                        />
+                      </div>
                     </div>
                   </div>
                 ))}

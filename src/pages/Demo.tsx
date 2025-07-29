@@ -1,13 +1,15 @@
-
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, PieChart, Pie, Cell } from 'recharts';
 import { Phone, Users, Brain, FileText, Share2, Download, Eye, Clock, Star, Zap, ArrowRight, Plus, Mic, TrendingUp, BarChart3 } from 'lucide-react';
+import CompanyAnalysis from "@/components/demo/CompanyAnalysis";
 
 const Demo = () => {
+  const [selectedCall, setSelectedCall] = useState(null);
+
   const callVolumeData = [
     { name: 'Week 1', calls: 12 },
     { name: 'Week 2', calls: 18 },
@@ -84,7 +86,11 @@ const Demo = () => {
 
   const handleCallClick = (call) => {
     console.log('Navigate to call analytics for:', call.participant);
-    // This would navigate to a detailed analytics page for the call
+    setSelectedCall(call);
+  };
+
+  const handleBackToDemo = () => {
+    setSelectedCall(null);
   };
 
   const getSentimentColor = (sentiment) => {
@@ -105,10 +111,17 @@ const Demo = () => {
     }
   };
 
+  if (selectedCall) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 p-6">
+        <CompanyAnalysis companyData={selectedCall} onBack={handleBackToDemo} />
+      </div>
+    );
+  }
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
-        {/* Header */}
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">Decide</h1>
@@ -126,7 +139,6 @@ const Demo = () => {
           </div>
         </div>
 
-        {/* Key Metrics */}
         <div className="grid md:grid-cols-4 gap-6">
           <Card className="bg-white/10 backdrop-blur-md border-white/20">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -173,7 +185,6 @@ const Demo = () => {
           </Card>
         </div>
 
-        {/* Charts and Analytics */}
         <div className="grid md:grid-cols-3 gap-6">
           <Card className="bg-white/10 backdrop-blur-md border-white/20">
             <CardHeader>
@@ -257,7 +268,6 @@ const Demo = () => {
           </Card>
         </div>
 
-        {/* Recent Calls Table */}
         <Card className="bg-white/10 backdrop-blur-md border-white/20">
           <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle className="text-white">Recent Calls</CardTitle>
@@ -307,7 +317,6 @@ const Demo = () => {
           </CardContent>
         </Card>
 
-        {/* AI Features Showcase */}
         <div className="grid md:grid-cols-3 gap-6">
           <Card className="bg-white/10 backdrop-blur-md border-white/20">
             <CardHeader className="text-center">

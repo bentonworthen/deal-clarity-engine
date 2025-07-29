@@ -84,17 +84,17 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
   ];
 
   const getSentimentColor = (sentiment: number) => {
-    if (sentiment >= 8) return 'text-green-400';
-    if (sentiment >= 6) return 'text-yellow-400';
-    return 'text-red-400';
+    if (sentiment >= 8) return 'text-blue-600';
+    if (sentiment >= 6) return 'text-blue-500';
+    return 'text-blue-700';
   };
 
   const getInsightIcon = (type: string) => {
     switch (type) {
-      case 'strength': return <CheckCircle2 className="h-5 w-5 text-green-400" />;
-      case 'concern': return <AlertTriangle className="h-5 w-5 text-yellow-400" />;
-      case 'opportunity': return <Star className="h-5 w-5 text-blue-400" />;
-      default: return <CheckCircle2 className="h-5 w-5 text-gray-400" />;
+      case 'strength': return <CheckCircle2 className="h-5 w-5 text-blue-600" />;
+      case 'concern': return <AlertTriangle className="h-5 w-5 text-blue-500" />;
+      case 'opportunity': return <Star className="h-5 w-5 text-blue-700" />;
+      default: return <CheckCircle2 className="h-5 w-5 text-blue-400" />;
     }
   };
 
@@ -107,14 +107,14 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
             variant="outline" 
             size="sm" 
             onClick={onBack}
-            className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
+            className="border-blue-200 bg-white/80 text-blue-700 hover:bg-blue-50 hover:text-blue-800 hover:border-blue-300"
           >
             <ArrowLeft className="mr-2 h-4 w-4" />
             Back to Calls
           </Button>
           <div>
-            <h1 className="text-3xl font-bold text-white">{companyName} Analysis</h1>
-            <p className="text-slate-300">Call with {participantName} • {companyData.date}</p>
+            <h1 className="text-3xl font-bold text-blue-900">{companyName} Analysis</h1>
+            <p className="text-blue-700">Call with {participantName} • {companyData.date}</p>
           </div>
         </div>
         <div className="flex space-x-3">
@@ -124,7 +124,7 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
           </Button>
           <Button 
             variant="outline" 
-            className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
+            className="border-blue-200 bg-white/80 text-blue-700 hover:bg-blue-50 hover:text-blue-800 hover:border-blue-300"
           >
             <Share2 className="mr-2 h-4 w-4" />
             Share Analysis
@@ -133,40 +133,40 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
       </div>
 
       {/* Call Summary Card */}
-      <Card className="bg-white/10 backdrop-blur-md border-white/20">
+      <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
         <CardContent className="p-6">
           <div className="grid md:grid-cols-4 gap-6">
             <div className="flex items-center space-x-3">
-              <Phone className="h-8 w-8 text-blue-400" />
+              <Phone className="h-8 w-8 text-blue-500" />
               <div>
-                <div className="text-sm text-slate-300">Call Type</div>
-                <div className="font-semibold text-white">{companyData.type}</div>
+                <div className="text-sm text-blue-600">Call Type</div>
+                <div className="font-semibold text-blue-900">{companyData.type}</div>
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <Clock className="h-8 w-8 text-green-400" />
+              <Clock className="h-8 w-8 text-blue-500" />
               <div>
-                <div className="text-sm text-slate-300">Duration</div>
-                <div className="font-semibold text-white">{companyData.duration}</div>
+                <div className="text-sm text-blue-600">Duration</div>
+                <div className="font-semibold text-blue-900">{companyData.duration}</div>
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <Brain className="h-8 w-8 text-purple-400" />
+              <Brain className="h-8 w-8 text-blue-500" />
               <div>
-                <div className="text-sm text-slate-300">Overall Sentiment</div>
-                <div className="font-semibold text-white flex items-center">
+                <div className="text-sm text-blue-600">Overall Sentiment</div>
+                <div className="font-semibold text-blue-900 flex items-center">
                   {keyMetrics.overallScore}/10
-                  <Badge className={`ml-2 ${companyData.sentiment === 'positive' ? 'bg-green-600' : companyData.sentiment === 'neutral' ? 'bg-yellow-600' : 'bg-red-600'}`}>
+                  <Badge className={`ml-2 ${companyData.sentiment === 'positive' ? 'bg-blue-600' : companyData.sentiment === 'neutral' ? 'bg-blue-500' : 'bg-blue-700'} text-white`}>
                     {companyData.sentiment}
                   </Badge>
                 </div>
               </div>
             </div>
             <div className="flex items-center space-x-3">
-              <Star className="h-8 w-8 text-yellow-400" />
+              <Star className="h-8 w-8 text-blue-500" />
               <div>
-                <div className="text-sm text-slate-300">Recommendation</div>
-                <div className="font-semibold text-white">{keyMetrics.investmentRecommendation}</div>
+                <div className="text-sm text-blue-600">Recommendation</div>
+                <div className="font-semibold text-blue-900">{keyMetrics.investmentRecommendation}</div>
               </div>
             </div>
           </div>
@@ -175,74 +175,74 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
 
       {/* Analysis Tabs */}
       <Tabs defaultValue="overview" className="space-y-6">
-        <TabsList className="bg-white/10 backdrop-blur-md">
-          <TabsTrigger value="overview" className="data-[state=active]:bg-blue-600">Overview</TabsTrigger>
-          <TabsTrigger value="sentiment" className="data-[state=active]:bg-blue-600">Sentiment Analysis</TabsTrigger>
-          <TabsTrigger value="topics" className="data-[state=active]:bg-blue-600">Key Topics</TabsTrigger>
-          <TabsTrigger value="competitive" className="data-[state=active]:bg-blue-600">Competitive Position</TabsTrigger>
-          <TabsTrigger value="insights" className="data-[state=active]:bg-blue-600">AI Insights</TabsTrigger>
+        <TabsList className="bg-white/80 backdrop-blur-md border-blue-200">
+          <TabsTrigger value="overview" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Overview</TabsTrigger>
+          <TabsTrigger value="sentiment" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Sentiment Analysis</TabsTrigger>
+          <TabsTrigger value="topics" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Key Topics</TabsTrigger>
+          <TabsTrigger value="competitive" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Competitive Position</TabsTrigger>
+          <TabsTrigger value="insights" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">AI Insights</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview">
           <div className="grid md:grid-cols-2 gap-6">
-            <Card className="bg-white/10 backdrop-blur-md border-white/20">
+            <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-white">Key Metrics</CardTitle>
+                <CardTitle className="text-blue-900">Key Metrics</CardTitle>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex justify-between items-center">
-                  <span className="text-slate-300">Overall Score</span>
+                  <span className="text-blue-700">Overall Score</span>
                   <div className="flex items-center space-x-2">
-                    <div className="w-20 bg-slate-700 rounded-full h-2">
+                    <div className="w-20 bg-blue-100 rounded-full h-2">
                       <div 
-                        className="h-2 rounded-full bg-gradient-to-r from-green-500 to-emerald-400" 
+                        className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600" 
                         style={{ width: `${keyMetrics.overallScore * 10}%` }}
                       />
                     </div>
-                    <span className="text-white font-bold">{keyMetrics.overallScore}/10</span>
+                    <span className="text-blue-900 font-bold">{keyMetrics.overallScore}/10</span>
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <span className="text-slate-300">Confidence Level</span>
+                  <span className="text-blue-700">Confidence Level</span>
                   <div className="flex items-center space-x-2">
-                    <div className="w-20 bg-slate-700 rounded-full h-2">
+                    <div className="w-20 bg-blue-100 rounded-full h-2">
                       <div 
-                        className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-cyan-400" 
+                        className="h-2 rounded-full bg-gradient-to-r from-blue-400 to-blue-500" 
                         style={{ width: `${keyMetrics.confidenceLevel}%` }}
                       />
                     </div>
-                    <span className="text-white font-bold">{keyMetrics.confidenceLevel}%</span>
+                    <span className="text-blue-900 font-bold">{keyMetrics.confidenceLevel}%</span>
                   </div>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-300">Risk Level</span>
-                  <Badge className="bg-yellow-600">{keyMetrics.riskLevel}</Badge>
+                  <span className="text-blue-700">Risk Level</span>
+                  <Badge className="bg-blue-500 text-white">{keyMetrics.riskLevel}</Badge>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-300">Time to Decision</span>
-                  <span className="text-white">{keyMetrics.timeToDecision}</span>
+                  <span className="text-blue-700">Time to Decision</span>
+                  <span className="text-blue-900">{keyMetrics.timeToDecision}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-slate-300">Follow-up Actions</span>
-                  <Badge variant="outline" className="text-slate-300 border-slate-500">{keyMetrics.followUpActions} pending</Badge>
+                  <span className="text-blue-700">Follow-up Actions</span>
+                  <Badge variant="outline" className="text-blue-700 border-blue-300">{keyMetrics.followUpActions} pending</Badge>
                 </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-white/10 backdrop-blur-md border-white/20">
+            <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
               <CardHeader>
-                <CardTitle className="text-white">Call Highlights</CardTitle>
+                <CardTitle className="text-blue-900">Call Highlights</CardTitle>
               </CardHeader>
               <CardContent className="space-y-3">
                 {companyData.keyTopics.map((topic, idx) => (
                   <div key={idx} className="flex items-center space-x-2">
-                    <CheckCircle2 className="h-4 w-4 text-green-400 flex-shrink-0" />
-                    <span className="text-slate-300 text-sm">{topic}</span>
+                    <CheckCircle2 className="h-4 w-4 text-blue-600 flex-shrink-0" />
+                    <span className="text-blue-700 text-sm">{topic}</span>
                   </div>
                 ))}
-                <div className="mt-4 p-3 bg-white/5 rounded-lg">
-                  <h4 className="text-sm font-semibold text-white mb-2">Key Insight</h4>
-                  <p className="text-slate-300 text-sm">{companyData.insights}</p>
+                <div className="mt-4 p-3 bg-blue-50 rounded-lg border border-blue-100">
+                  <h4 className="text-sm font-semibold text-blue-900 mb-2">Key Insight</h4>
+                  <p className="text-blue-700 text-sm">{companyData.insights}</p>
                 </div>
               </CardContent>
             </Card>
@@ -250,27 +250,28 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
         </TabsContent>
 
         <TabsContent value="sentiment">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-white">Sentiment Timeline</CardTitle>
+              <CardTitle className="text-blue-900">Sentiment Timeline</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
                 <LineChart data={sentimentTimeline}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="time" stroke="#9CA3AF" />
-                  <YAxis domain={[0, 10]} stroke="#9CA3AF" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#BFDBFE" />
+                  <XAxis dataKey="time" stroke="#3B82F6" />
+                  <YAxis domain={[0, 10]} stroke="#3B82F6" />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
+                      backgroundColor: 'white', 
+                      border: '1px solid #BFDBFE',
                       borderRadius: '8px',
-                      color: '#F9FAFB'
+                      color: '#1E40AF',
+                      boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
                     }}
                     labelFormatter={(value) => `Time: ${value}`}
                     formatter={(value, name) => [value, 'Sentiment Score']}
                   />
-                  <Line type="monotone" dataKey="sentiment" stroke="#10B981" strokeWidth={3} />
+                  <Line type="monotone" dataKey="sentiment" stroke="#2563EB" strokeWidth={3} />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>
@@ -278,18 +279,18 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
         </TabsContent>
 
         <TabsContent value="topics">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-white">Topic Analysis</CardTitle>
+              <CardTitle className="text-blue-900">Topic Analysis</CardTitle>
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
                 {topicBreakdown.map((topic, idx) => (
-                  <div key={idx} className="p-4 bg-white/5 rounded-lg">
+                  <div key={idx} className="p-4 bg-blue-50 rounded-lg border border-blue-100">
                     <div className="flex items-center justify-between mb-2">
-                      <h4 className="font-semibold text-white">{topic.topic}</h4>
+                      <h4 className="font-semibold text-blue-900">{topic.topic}</h4>
                       <div className="flex items-center space-x-2">
-                        <Badge variant="outline" className="text-slate-300 border-slate-500">
+                        <Badge variant="outline" className="text-blue-700 border-blue-300">
                           {topic.mentions} mentions
                         </Badge>
                         <span className={`font-bold ${getSentimentColor(topic.sentiment)}`}>
@@ -298,10 +299,10 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
                       </div>
                     </div>
                     <div className="flex justify-between items-center text-sm">
-                      <span className="text-slate-400">Duration: {topic.duration}</span>
-                      <div className="w-24 bg-slate-700 rounded-full h-2">
+                      <span className="text-blue-600">Duration: {topic.duration}</span>
+                      <div className="w-24 bg-blue-200 rounded-full h-2">
                         <div 
-                          className="h-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-400" 
+                          className="h-2 rounded-full bg-gradient-to-r from-blue-500 to-blue-600" 
                           style={{ width: `${topic.sentiment * 10}%` }}
                         />
                       </div>
@@ -314,26 +315,27 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
         </TabsContent>
 
         <TabsContent value="competitive">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-white">Competitive Analysis vs Industry Benchmark</CardTitle>
+              <CardTitle className="text-blue-900">Competitive Analysis vs Industry Benchmark</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={300}>
                 <BarChart data={competitiveAnalysis}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="metric" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#BFDBFE" />
+                  <XAxis dataKey="metric" stroke="#3B82F6" />
+                  <YAxis stroke="#3B82F6" />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
+                      backgroundColor: 'white', 
+                      border: '1px solid #BFDBFE',
                       borderRadius: '8px',
-                      color: '#F9FAFB'
+                      color: '#1E40AF',
+                      boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
                     }}
                   />
                   <Bar dataKey="score" fill="#3B82F6" name="Company Score" />
-                  <Bar dataKey="benchmark" fill="#6B7280" name="Industry Benchmark" />
+                  <Bar dataKey="benchmark" fill="#93C5FD" name="Industry Benchmark" />
                 </BarChart>
               </ResponsiveContainer>
             </CardContent>
@@ -343,18 +345,18 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
         <TabsContent value="insights">
           <div className="space-y-4">
             {aiInsights.map((insight, idx) => (
-              <Card key={idx} className="bg-white/10 backdrop-blur-md border-white/20">
+              <Card key={idx} className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
                 <CardContent className="p-4">
                   <div className="flex items-start space-x-3">
                     {getInsightIcon(insight.type)}
                     <div className="flex-1">
                       <div className="flex items-center justify-between mb-2">
-                        <h4 className="font-semibold text-white">{insight.title}</h4>
-                        <Badge variant="outline" className="text-slate-300 border-slate-500">
+                        <h4 className="font-semibold text-blue-900">{insight.title}</h4>
+                        <Badge variant="outline" className="text-blue-700 border-blue-300">
                           {insight.confidence}% confidence
                         </Badge>
                       </div>
-                      <p className="text-slate-300 text-sm">{insight.description}</p>
+                      <p className="text-blue-700 text-sm">{insight.description}</p>
                     </div>
                   </div>
                 </CardContent>

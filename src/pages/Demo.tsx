@@ -25,10 +25,10 @@ const Demo = () => {
   ];
 
   const callTypesData = [
-    { name: 'Pitch Calls', value: 45, color: '#3B82F6' },
-    { name: 'Due Diligence', value: 30, color: '#10B981' },
-    { name: 'Follow-up', value: 15, color: '#8B5CF6' },
-    { name: 'Internal Review', value: 10, color: '#F59E0B' },
+    { name: 'Pitch Calls', value: 45, color: '#2563EB' },
+    { name: 'Due Diligence', value: 30, color: '#3B82F6' },
+    { name: 'Follow-up', value: 15, color: '#60A5FA' },
+    { name: 'Internal Review', value: 10, color: '#93C5FD' },
   ];
 
   const recentCalls = [
@@ -95,30 +95,30 @@ const Demo = () => {
 
   const getSentimentColor = (sentiment) => {
     switch (sentiment) {
-      case 'positive': return 'bg-green-600 text-white';
-      case 'neutral': return 'bg-yellow-600 text-white';
-      case 'negative': return 'bg-red-600 text-white';
+      case 'positive': return 'bg-blue-600 text-white';
+      case 'neutral': return 'bg-blue-400 text-white';
+      case 'negative': return 'bg-blue-800 text-white';
       default: return 'bg-gray-600 text-white';
     }
   };
 
   const getStatusColor = (status) => {
     switch (status) {
-      case 'completed': return 'bg-green-600 text-white';
-      case 'in-progress': return 'bg-blue-600 text-white';
-      case 'scheduled': return 'bg-purple-600 text-white';
+      case 'completed': return 'bg-blue-600 text-white';
+      case 'in-progress': return 'bg-blue-500 text-white';
+      case 'scheduled': return 'bg-blue-400 text-white';
       default: return 'bg-gray-600 text-white';
     }
   };
 
   // Custom tooltip component for the PieChart
-  const CustomPieTooltip = ({ active, payload }) => {
+  const CustomPieTooltip = ({ active, payload }: { active?: boolean; payload?: any }) => {
     if (active && payload && payload.length) {
       const data = payload[0];
       return (
-        <div className="bg-slate-800/95 backdrop-blur-sm border border-slate-600/50 rounded-lg px-3 py-2 shadow-xl">
-          <p className="text-slate-200 font-medium text-sm">
-            {data.name}: <span className="text-white font-bold">{data.value}</span>
+        <div className="bg-white/95 backdrop-blur-sm border border-blue-200 rounded-lg px-3 py-2 shadow-xl">
+          <p className="text-blue-900 font-medium text-sm">
+            {data.name}: <span className="text-blue-700 font-bold">{data.value}</span>
           </p>
         </div>
       );
@@ -128,19 +128,19 @@ const Demo = () => {
 
   if (selectedCall) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 p-6">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 p-6">
         <CompanyAnalysis companyData={selectedCall} onBack={handleBackToDemo} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 p-6">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100 p-6">
       <div className="max-w-7xl mx-auto space-y-6">
         <div className="flex items-center justify-between">
           <div>
-            <h1 className="text-4xl font-bold text-white mb-2">Decide</h1>
-            <p className="text-slate-300">AI-Powered Call Analytics for Smart Investment Decisions</p>
+            <h1 className="text-4xl font-bold text-blue-900 mb-2">Decide</h1>
+            <p className="text-blue-700">AI-Powered Call Analytics for Smart Investment Decisions</p>
           </div>
           <div className="flex space-x-3">
             <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg">
@@ -149,7 +149,7 @@ const Demo = () => {
             </Button>
             <Button 
               variant="outline" 
-              className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
+              className="border-blue-200 bg-white/80 text-blue-700 hover:bg-blue-50 hover:text-blue-800 hover:border-blue-300"
             >
               <BarChart3 className="mr-2 h-4 w-4" />
               Generate Report
@@ -158,68 +158,69 @@ const Demo = () => {
         </div>
 
         <div className="grid md:grid-cols-4 gap-6">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-slate-300">Total Calls</CardTitle>
-              <Phone className="h-4 w-4 text-blue-400" />
+              <CardTitle className="text-sm font-medium text-blue-700">Total Calls</CardTitle>
+              <Phone className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">69</div>
-              <p className="text-xs text-green-400">+23% from last month</p>
+              <div className="text-2xl font-bold text-blue-900">69</div>
+              <p className="text-xs text-blue-600">+23% from last month</p>
             </CardContent>
           </Card>
           
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-slate-300">Avg Call Duration</CardTitle>
-              <Clock className="h-4 w-4 text-green-400" />
+              <CardTitle className="text-sm font-medium text-blue-700">Avg Call Duration</CardTitle>
+              <Clock className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">38 min</div>
-              <p className="text-xs text-green-400">+5 min this quarter</p>
+              <div className="text-2xl font-bold text-blue-900">38 min</div>
+              <p className="text-xs text-blue-600">+5 min this quarter</p>
             </CardContent>
           </Card>
           
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-slate-300">Analysis Completion Rate</CardTitle>
-              <TrendingUp className="h-4 w-4 text-purple-400" />
+              <CardTitle className="text-sm font-medium text-blue-700">Analysis Completion Rate</CardTitle>
+              <TrendingUp className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">96%</div>
-              <p className="text-xs text-purple-400">Processing accuracy</p>
+              <div className="text-2xl font-bold text-blue-900">96%</div>
+              <p className="text-xs text-blue-600">Processing accuracy</p>
             </CardContent>
           </Card>
           
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-              <CardTitle className="text-sm font-medium text-slate-300">Key Insights Generated</CardTitle>
-              <Brain className="h-4 w-4 text-yellow-400" />
+              <CardTitle className="text-sm font-medium text-blue-700">Key Insights Generated</CardTitle>
+              <Brain className="h-4 w-4 text-blue-500" />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold text-white">287</div>
-              <p className="text-xs text-yellow-400">This month</p>
+              <div className="text-2xl font-bold text-blue-900">287</div>
+              <p className="text-xs text-blue-600">This month</p>
             </CardContent>
           </Card>
         </div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-white">Call Volume Trends</CardTitle>
+              <CardTitle className="text-blue-900">Call Volume Trends</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={200}>
                 <BarChart data={callVolumeData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="name" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#BFDBFE" />
+                  <XAxis dataKey="name" stroke="#3B82F6" />
+                  <YAxis stroke="#3B82F6" />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
+                      backgroundColor: 'white', 
+                      border: '1px solid #BFDBFE',
                       borderRadius: '8px',
-                      color: '#F9FAFB'
+                      color: '#1E40AF',
+                      boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
                     }}
                   />
                   <Bar dataKey="calls" fill="#3B82F6" />
@@ -228,33 +229,34 @@ const Demo = () => {
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-white">Sentiment Analysis Over Time</CardTitle>
+              <CardTitle className="text-blue-900">Sentiment Analysis Over Time</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={200}>
                 <LineChart data={sentimentData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                  <XAxis dataKey="name" stroke="#9CA3AF" />
-                  <YAxis stroke="#9CA3AF" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#BFDBFE" />
+                  <XAxis dataKey="name" stroke="#3B82F6" />
+                  <YAxis stroke="#3B82F6" />
                   <Tooltip 
                     contentStyle={{ 
-                      backgroundColor: '#1F2937', 
-                      border: '1px solid #374151',
+                      backgroundColor: 'white', 
+                      border: '1px solid #BFDBFE',
                       borderRadius: '8px',
-                      color: '#F9FAFB'
+                      color: '#1E40AF',
+                      boxShadow: '0 10px 15px -3px rgb(0 0 0 / 0.1)'
                     }}
                   />
-                  <Line type="monotone" dataKey="sentiment" stroke="#10B981" strokeWidth={3} />
+                  <Line type="monotone" dataKey="sentiment" stroke="#2563EB" strokeWidth={3} />
                 </LineChart>
               </ResponsiveContainer>
             </CardContent>
           </Card>
 
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
-              <CardTitle className="text-white">Call Types Distribution</CardTitle>
+              <CardTitle className="text-blue-900">Call Types Distribution</CardTitle>
             </CardHeader>
             <CardContent>
               <ResponsiveContainer width="100%" height={200}>
@@ -279,13 +281,13 @@ const Demo = () => {
           </Card>
         </div>
 
-        <Card className="bg-white/10 backdrop-blur-md border-white/20">
+        <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
           <CardHeader className="flex flex-row items-center justify-between">
-            <CardTitle className="text-white">Recent Calls</CardTitle>
+            <CardTitle className="text-blue-900">Recent Calls</CardTitle>
             <Button 
               variant="outline" 
               size="sm" 
-              className="border-slate-600 bg-slate-800/50 text-slate-300 hover:bg-slate-700/70 hover:text-white hover:border-slate-500"
+              className="border-blue-200 bg-white/80 text-blue-700 hover:bg-blue-50 hover:text-blue-800 hover:border-blue-300"
             >
               View All
             </Button>
@@ -295,36 +297,36 @@ const Demo = () => {
               {recentCalls.map((call, idx) => (
                 <div 
                   key={idx} 
-                  className="flex items-center justify-between p-4 rounded-lg bg-white/5 hover:bg-white/10 transition-colors cursor-pointer"
+                  className="flex items-center justify-between p-4 rounded-lg bg-blue-50/50 hover:bg-blue-100/70 transition-colors cursor-pointer border border-blue-100"
                   onClick={() => handleCallClick(call)}
                 >
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-sm">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                       <Phone className="h-5 w-5" />
                     </div>
                     <div>
-                      <h4 className="font-medium text-white">{call.participant}</h4>
-                      <p className="text-sm text-slate-400">{call.type} • {call.date}</p>
+                      <h4 className="font-medium text-blue-900">{call.participant}</h4>
+                      <p className="text-sm text-blue-600">{call.type} • {call.date}</p>
                     </div>
                   </div>
                   <div className="flex items-center space-x-6">
                     <div className="text-right">
-                      <div className="font-bold text-white">{call.duration}</div>
-                      <div className="text-sm text-slate-400">Duration</div>
+                      <div className="font-bold text-blue-900">{call.duration}</div>
+                      <div className="text-sm text-blue-600">Duration</div>
                     </div>
                     <div className="text-right">
                       <Badge className={getSentimentColor(call.sentiment)}>
                         {call.sentiment}
                       </Badge>
-                      <div className="text-sm text-slate-400 mt-1">Sentiment</div>
+                      <div className="text-sm text-blue-600 mt-1">Sentiment</div>
                     </div>
                     <div className="text-right">
                       <Badge className={getStatusColor(call.status)}>
                         {call.status}
                       </Badge>
-                      <div className="text-sm text-slate-400 mt-1">Status</div>
+                      <div className="text-sm text-blue-600 mt-1">Status</div>
                     </div>
-                    <ArrowRight className="h-4 w-4 text-slate-400" />
+                    <ArrowRight className="h-4 w-4 text-blue-400" />
                   </div>
                 </div>
               ))}
@@ -333,13 +335,13 @@ const Demo = () => {
         </Card>
 
         <div className="grid md:grid-cols-3 gap-6">
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader className="text-center">
-              <Mic className="h-12 w-12 text-blue-400 mx-auto mb-4" />
-              <CardTitle className="text-white">Real-time Transcription</CardTitle>
+              <Mic className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+              <CardTitle className="text-blue-900">Real-time Transcription</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-slate-300 mb-4">
+              <p className="text-blue-700 mb-4">
                 Automatic speech-to-text conversion with speaker identification and timestamps
               </p>
               <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg">
@@ -348,31 +350,31 @@ const Demo = () => {
             </CardContent>
           </Card>
           
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader className="text-center">
-              <Brain className="h-12 w-12 text-green-400 mx-auto mb-4" />
-              <CardTitle className="text-white">Sentiment Analysis</CardTitle>
+              <Brain className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+              <CardTitle className="text-blue-900">Sentiment Analysis</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-slate-300 mb-4">
+              <p className="text-blue-700 mb-4">
                 AI-powered emotion detection and sentiment tracking throughout the conversation
               </p>
-              <Button className="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white shadow-lg">
+              <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg">
                 Analyze Sentiment
               </Button>
             </CardContent>
           </Card>
           
-          <Card className="bg-white/10 backdrop-blur-md border-white/20">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader className="text-center">
-              <Zap className="h-12 w-12 text-purple-400 mx-auto mb-4" />
-              <CardTitle className="text-white">Insight Extraction</CardTitle>
+              <Zap className="h-12 w-12 text-blue-500 mx-auto mb-4" />
+              <CardTitle className="text-blue-900">Insight Extraction</CardTitle>
             </CardHeader>
             <CardContent className="text-center">
-              <p className="text-slate-300 mb-4">
+              <p className="text-blue-700 mb-4">
                 Automated extraction of key topics, concerns, and investment decision factors
               </p>
-              <Button className="bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800 text-white shadow-lg">
+              <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white shadow-lg">
                 Extract Insights
               </Button>
             </CardContent>

@@ -24,71 +24,88 @@ import {
 } from 'lucide-react';
 
 import CompanyAnalysis from "@/components/demo/CompanyAnalysis";
+import DealAnalysis from "@/components/demo/DealAnalysis";
 
 const Demo = () => {
   const [selectedCall, setSelectedCall] = useState(null);
+  const [selectedDeal, setSelectedDeal] = useState(null);
 
-  const recentCalls = [
+  const recentDeals = [
     { 
-      participant: 'John Martinez (VACA)', 
+      company: 'VACA (VACA Technologies)', 
       date: '2024-01-15', 
-      duration: '45 min', 
-      type: 'Pitch Call', 
-      status: 'completed',
+      stage: 'Seed', 
+      amount: '$4M', 
+      valuation: '$18M',
+      industry: 'LegalTech / Enterprise Risk Intelligence',
+      location: 'Park City, Utah',
+      status: 'active',
       sentiment: 'positive',
-      keyTopics: ['Product-market fit', 'Revenue growth', 'Team expansion'],
-      insights: 'Strong traction metrics and clear value proposition'
+      keyMetrics: ['$1.8M ARR', '15 enterprise clients', '3 months to $1.8M ARR'],
+      insights: 'Strong traction with enterprise customers, clear product-market fit in legal risk intelligence'
     },
     { 
-      participant: 'Sarah Chen (DataMesh)', 
+      company: 'VACA Technologies', 
       date: '2024-01-14', 
-      duration: '32 min', 
-      type: 'Due Diligence', 
-      status: 'completed',
-      sentiment: 'neutral',
-      keyTopics: ['Technical architecture', 'Scalability', 'Competition'],
-      insights: 'Technical concerns raised about scalability'
-    },
-    { 
-      participant: 'Mike Thompson (GreenLab)', 
-      date: '2024-01-14', 
-      duration: '28 min', 
-      type: 'Follow-up', 
+      stage: 'Series A', 
+      amount: '$12M', 
+      valuation: '$45M',
+      industry: 'HealthTech / Digital Therapeutics',
+      location: 'San Francisco, CA',
       status: 'completed',
       sentiment: 'positive',
-      keyTopics: ['Partnership strategy', 'Market expansion', 'Funding timeline'],
-      insights: 'Positive momentum on partnership discussions'
-    },
-    { 
-      participant: 'Lisa Wang (CloudSync)', 
-      date: '2024-01-13', 
-      duration: '52 min', 
-      type: 'Pitch Call', 
-      status: 'completed',
-      sentiment: 'positive',
-      keyTopics: ['SaaS metrics', 'Customer acquisition', 'Retention rates'],
+      keyMetrics: ['$3.2M ARR', '127 customers', '94% retention'],
       insights: 'Impressive customer retention and growth metrics'
     },
     { 
-      participant: 'David Rodriguez (PayFlow)', 
+      company: 'DataMesh Solutions', 
+      date: '2024-01-13', 
+      stage: 'Series B', 
+      amount: '$25M', 
+      valuation: '$120M',
+      industry: 'Data Infrastructure / AI',
+      location: 'Austin, TX',
+      status: 'in_progress',
+      sentiment: 'neutral',
+      keyMetrics: ['$8.5M ARR', '45 enterprise clients', '2.5x YoY growth'],
+      insights: 'Technical concerns raised about scalability'
+    },
+    { 
+      company: 'GreenLab Systems', 
       date: '2024-01-12', 
-      duration: '38 min', 
-      type: 'Due Diligence', 
+      stage: 'Seed', 
+      amount: '$6M', 
+      valuation: '$24M',
+      industry: 'CleanTech / Industrial IoT',
+      location: 'Boston, MA',
       status: 'completed',
       sentiment: 'positive',
-      keyTopics: ['Regulatory compliance', 'Financial projections', 'Exit strategy'],
-      insights: 'Strong regulatory position and clear path to profitability'
+      keyMetrics: ['$1.2M ARR', '23 customers', 'Partnership momentum'],
+      insights: 'Positive momentum on partnership discussions'
     },
   ];
 
-  const handleCallClick = (call) => {
-    console.log('Navigate to call analytics for:', call.participant);
-    setSelectedCall(call);
+  const handleDealClick = (deal) => {
+    console.log('Navigate to deal analysis for:', deal.company);
+    if (deal.company === 'VACA (VACA Technologies)') {
+      setSelectedDeal(deal);
+    } else {
+      setSelectedCall(deal);
+    }
   };
 
   const handleBackToDemo = () => {
     setSelectedCall(null);
+    setSelectedDeal(null);
   };
+
+  if (selectedDeal) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-snow-white via-white to-gray-50">
+        <DealAnalysis onBack={handleBackToDemo} />
+      </div>
+    );
+  }
 
   if (selectedCall) {
     return (
@@ -127,138 +144,179 @@ const Demo = () => {
               </Button>
               <Button variant="secondary">
                 <BarChart3 className="mr-2 h-4 w-4" />
-                Generate Report
+                View Analytics
               </Button>
             </div>
           }
         />
 
-        <main className="flex-1 overflow-y-auto p-6">
-          <div className="max-w-7xl mx-auto space-y-6">
-            {/* Metric Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              <MetricCard
-                title="Total Calls"
-                value="69"
-                icon={<Phone className="h-5 w-5" />}
-                trend={{ value: 23, isPositive: true }}
-              />
-              <MetricCard
-                title="Avg Call Duration"
-                value="38 min"
-                icon={<Clock className="h-5 w-5" />}
-                trend={{ value: 5, isPositive: true }}
-              />
-              <MetricCard
-                title="Analysis Completion Rate"
-                value="96%"
-                icon={<TrendingUp className="h-5 w-5" />}
-                trend={{ value: 2, isPositive: true }}
-              />
-              <MetricCard
-                title="Key Insights Generated"
-                value="287"
-                icon={<Brain className="h-5 w-5" />}
-                trend={{ value: 15, isPositive: true }}
-              />
+        <div className="flex-1 overflow-auto p-6">
+          {/* Key Metrics */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+            <MetricCard
+              title="Total Calls"
+              value="127"
+              change="+12%"
+              changeType="positive"
+              icon={<Phone className="h-4 w-4" />}
+            />
+            <MetricCard
+              title="Avg Call Duration"
+              value="42 min"
+              change="+8%"
+              changeType="positive"
+              icon={<Clock className="h-4 w-4" />}
+            />
+            <MetricCard
+              title="Analysis Completion Rate"
+              value="94%"
+              change="+3%"
+              changeType="positive"
+              icon={<Brain className="h-4 w-4" />}
+            />
+            <MetricCard
+              title="Key Insights Generated"
+              value="1,247"
+              change="+18%"
+              changeType="positive"
+              icon={<Zap className="h-4 w-4" />}
+            />
+          </div>
+
+          {/* Recent Calls */}
+          <div className="space-y-6">
+            <div className="flex items-center justify-between">
+              <div>
+                <h2 className="text-2xl font-bold text-gray-900">Recent Calls</h2>
+                <p className="text-gray-600">Latest call activities and insights</p>
+              </div>
+              <Button variant="outline">
+                View All
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
             </div>
 
-            {/* Recent Calls */}
-            <DashboardCard 
-              title="Recent Calls" 
-              subtitle="Latest call activities and insights"
-              action={
-                <Button variant="secondary" size="sm">
-                  View All
-                </Button>
-              }
-            >
-              <div className="space-y-4">
-                {recentCalls.map((call, idx) => (
-                  <div 
-                    key={idx} 
-                    className="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-vat-indigo/20 transition-all duration-300 cursor-pointer"
-                    onClick={() => handleCallClick(call)}
-                  >
-                    <div className="flex items-center space-x-4">
-                      <div className="w-10 h-10 bg-gradient-to-br from-vat-indigo to-mint-tech rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                        <Phone className="h-5 w-5" />
+            <div className="grid gap-6">
+              {recentDeals.map((deal, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleDealClick(deal)}
+                  className="bg-white rounded-lg border border-gray-200 p-6 hover:shadow-md transition-shadow cursor-pointer"
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="flex items-center space-x-3">
+                      <div className="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <Users className="h-5 w-5 text-blue-600" />
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900">{call.participant}</h4>
-                        <p className="text-sm text-gray-500">{call.type} • {call.date}</p>
+                        <h3 className="font-semibold text-gray-900">{deal.company}</h3>
+                        <p className="text-sm text-gray-500">{deal.industry}</p>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-6">
-                      <div className="text-right">
-                        <div className="font-mono font-semibold text-gray-900">{call.duration}</div>
-                        <div className="text-sm text-gray-500">Duration</div>
-                      </div>
-                      <div className="text-right">
-                        <StatusPill status={call.sentiment === 'positive' ? 'b2b' : call.sentiment === 'negative' ? 'reverse-charge' : 'b2c'}>
-                          {call.sentiment}
-                        </StatusPill>
-                        <div className="text-sm text-gray-500 mt-1">Sentiment</div>
-                      </div>
-                      <div className="text-right">
-                        <StatusPill status={call.status === 'completed' ? 'b2b' : 'b2c'}>
-                          {call.status}
-                        </StatusPill>
-                        <div className="text-sm text-gray-500 mt-1">Status</div>
-                      </div>
-                      <ArrowRight className="h-4 w-4 text-gray-400" />
+                    <div className="flex items-center space-x-2">
+                      <StatusPill status={deal.status} />
+                      <span className="text-sm text-gray-500">{deal.date}</span>
                     </div>
                   </div>
-                ))}
+                  
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
+                    <div>
+                      <p className="text-sm text-gray-500">Stage</p>
+                      <p className="font-medium text-gray-900">{deal.stage}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Amount</p>
+                      <p className="font-medium text-gray-900">{deal.amount}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Valuation</p>
+                      <p className="font-medium text-gray-900">{deal.valuation}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-500">Location</p>
+                      <p className="font-medium text-gray-900">{deal.location}</p>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-sm text-gray-500 mb-1">Key Metrics</p>
+                      <div className="flex flex-wrap gap-2">
+                        {deal.keyMetrics.map((metric, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 bg-blue-50 text-blue-700 text-xs rounded-full"
+                          >
+                            {metric}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    
+                    <div>
+                      <p className="text-sm text-gray-500 mb-1">Key Insight</p>
+                      <p className="text-sm text-gray-700">{deal.insights}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Feature Cards */}
+          <div className="grid md:grid-cols-3 gap-6 mt-12">
+            <DashboardCard title="Real-time Transcription" subtitle="Automatic speech-to-text conversion">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Live call transcription</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Speaker identification</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Timestamp tracking</span>
+                </div>
               </div>
             </DashboardCard>
 
-            {/* Feature Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <DashboardCard title="Real-time Transcription" subtitle="Automatic speech-to-text conversion">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-vat-indigo to-mint-tech rounded-full flex items-center justify-center mx-auto">
-                    <Mic className="h-8 w-8 text-white" />
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Automatic speech-to-text conversion with speaker identification and timestamps
-                  </p>
-                  <Button className="w-full">
-                    Start Recording
-                  </Button>
+            <DashboardCard title="Sentiment Analysis" subtitle="AI-powered emotion detection">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Real-time sentiment tracking</span>
                 </div>
-              </DashboardCard>
-              
-              <DashboardCard title="Sentiment Analysis" subtitle="AI-powered emotion detection">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-mint-tech to-vat-indigo rounded-full flex items-center justify-center mx-auto">
-                    <Brain className="h-8 w-8 text-white" />
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    AI-powered emotion detection and sentiment tracking throughout the conversation
-                  </p>
-                  <Button className="w-full">
-                    Analyze Sentiment
-                  </Button>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Emotion classification</span>
                 </div>
-              </DashboardCard>
-              
-              <DashboardCard title="Insight Extraction" subtitle="Automated key topic extraction">
-                <div className="text-center space-y-4">
-                  <div className="w-16 h-16 bg-gradient-to-br from-vat-indigo to-mint-tech rounded-full flex items-center justify-center mx-auto">
-                    <Zap className="h-8 w-8 text-white" />
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Automated extraction of key topics, concerns, and investment decision factors
-                  </p>
-                  <Button className="w-full">
-                    Extract Insights
-                  </Button>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Trend analysis</span>
                 </div>
-              </DashboardCard>
-            </div>
+              </div>
+            </DashboardCard>
+
+            <DashboardCard title="Insight Extraction" subtitle="Automated key topic extraction">
+              <div className="space-y-3">
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Topic identification</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Action item detection</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+                  <span className="text-sm text-gray-600">Risk assessment</span>
+                </div>
+              </div>
+            </DashboardCard>
           </div>
-        </main>
+        </div>
       </div>
     </div>
   );

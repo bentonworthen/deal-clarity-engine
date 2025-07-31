@@ -1,0 +1,151 @@
+/* Design System - Custom Variables */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@500;600;700&display=swap');
+@import url('https://fonts.cdnfonts.com/css/geist-mono');
+
+@layer base {
+  :root {
+    /* Color Palette */
+    --vat-indigo: 234 100% 67%;  /* #5B6BFF */
+    --mint-tech: 167 100% 42%;   /* #00D6A3 */
+    --snow-white: 220 20% 98%;   /* #F9FAFB */
+    --deep-navy: 222 33% 11%;    /* #0F172A */
+
+    /* Status Colors */
+    --b2b-status: 167 100% 42%;  /* Mint Tech */
+    --b2c-status: 234 100% 67%;  /* VAT Indigo */
+    --reverse-charge: 35 96% 51%; /* Amber */
+
+    /* Updated System Colors */
+    --background: var(--snow-white);
+    --foreground: var(--deep-navy);
+    
+    --primary: var(--vat-indigo);
+    --primary-foreground: var(--snow-white);
+    
+    --accent: var(--mint-tech);
+    --accent-foreground: var(--deep-navy);
+
+    /* Card Styles */
+    --card: 0 0% 100%;
+    --card-foreground: var(--deep-navy);
+    --card-border: 214 32% 91%;  /* #E2E8F0 */
+    --card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.05);
+
+    /* Sidebar */
+    --sidebar-width-expanded: 256px;
+    --sidebar-width-collapsed: 64px;
+    --sidebar-background: rgba(255, 255, 255, 0.8);
+    --sidebar-border: rgba(226, 232, 240, 0.6);
+    
+    /* Animation Timings */
+    --transition-speed: 300ms;
+    
+    /* Border Radius */
+    --radius: 12px;
+  }
+
+  /* Dark Mode Overrides */
+  .dark {
+    --background: var(--deep-navy);
+    --foreground: var(--snow-white);
+    
+    --card: 222 47% 11%;
+    --card-foreground: var(--snow-white);
+    --card-border: 217 33% 17%;
+    --card-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+    
+    --sidebar-background: rgba(15, 23, 42, 0.8);
+    --sidebar-border: rgba(51, 65, 85, 0.6);
+  }
+}
+
+/* Typography System */
+@layer base {
+  html {
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .font-mono {
+    font-family: 'Geist Mono', monospace;
+  }
+}
+
+/* Component Styles */
+@layer components {
+  /* Card Styles */
+  .dashboard-card {
+    @apply bg-white rounded-xl border border-[#e2e8f0] shadow-sm 
+           hover:shadow-md hover:border-primary/20 transition-all duration-300;
+  }
+
+  /* Status Pills */
+  .status-pill {
+    @apply px-3 py-1 rounded-full text-sm font-medium;
+  }
+
+  .status-b2b {
+    @apply bg-[#00D6A3]/10 text-[#00D6A3];
+  }
+
+  .status-b2c {
+    @apply bg-[#5B6BFF]/10 text-[#5B6BFF];
+  }
+
+  .status-reverse-charge {
+    @apply bg-[#f59e0b]/10 text-[#f59e0b];
+  }
+
+  /* Metric Cards */
+  .metric-card {
+    @apply p-6 rounded-xl border border-[#e2e8f0] bg-white
+           hover:shadow-lg transition-all duration-300
+           flex flex-col gap-4;
+  }
+
+  /* Buttons */
+  .btn-primary {
+    @apply bg-[#5B6BFF] text-white rounded-lg px-4 py-2
+           hover:bg-[#5B6BFF]/90 transition-all duration-300;
+  }
+
+  .btn-secondary {
+    @apply border-2 border-[#5B6BFF] text-[#5B6BFF] rounded-lg px-4 py-2
+           hover:bg-[#5B6BFF]/5 transition-all duration-300;
+  }
+
+  /* Tables */
+  .data-table {
+    @apply w-full border-collapse;
+  }
+
+  .data-table th {
+    @apply text-left py-3 px-4 border-b border-[#e2e8f0] font-medium text-gray-600;
+  }
+
+  .data-table td {
+    @apply py-3 px-4 border-b border-[#e2e8f0];
+  }
+
+  .data-table tr:hover {
+    @apply bg-gray-50;
+  }
+
+  /* Animations */
+  .shimmer {
+    @apply animate-pulse bg-gray-200;
+  }
+
+  /* Charts */
+  .chart-container {
+    @apply p-4 rounded-xl border border-[#e2e8f0] bg-white;
+  }
+
+  .chart-tooltip {
+    @apply bg-white/90 backdrop-blur-sm border border-[#e2e8f0] 
+           rounded-lg shadow-lg p-3;
+  }
+}

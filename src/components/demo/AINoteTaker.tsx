@@ -13,7 +13,7 @@ const AINoteTaker = () => {
   const [callStarted, setCallStarted] = useState(false);
 
   const transcript = [
-    { speaker: 'Founder', time: '0:05', text: "Thanks for taking the time to meet with us today. I'm excited to share VitaFlow's progress since our last conversation." },
+    { speaker: 'Founder', time: '0:05', text: "Thanks for taking the time to meet with us today. I'm excited to share VACA's progress since our last conversation." },
     { speaker: 'VC', time: '0:12', text: "Of course! I've been following your metrics. Can you walk me through the customer traction you mentioned?" },
     { speaker: 'Founder', time: '0:20', text: "Absolutely. We've onboarded 127 healthcare organizations in the past 6 months, with an average contract value of $25K annually." },
     { speaker: 'VC', time: '0:35', text: "That's impressive growth. What's driving the adoption?" },
@@ -69,7 +69,7 @@ const AINoteTaker = () => {
                 VF
               </div>
               <div>
-                <h2 className="text-xl font-bold text-white">VitaFlow Pitch Call</h2>
+                <h2 className="text-xl font-bold text-white">VACA Pitch Call</h2>
                 <p className="text-slate-300">John Martinez, CEO & Co-founder</p>
               </div>
             </div>

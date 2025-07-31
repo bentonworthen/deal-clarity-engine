@@ -17,7 +17,7 @@ const Index = () => {
                 AI-Powered Deal Intelligence
               </div>
               <h1 className="font-heading text-6xl md:text-7xl font-bold text-deep-navy mb-6 tracking-tight">
-                Decide
+                VACA
               </h1>
               <p className="text-2xl text-vat-indigo mb-4 max-w-3xl mx-auto font-medium">
                 Transform VC Decision-Making with AI

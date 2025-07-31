@@ -30,7 +30,7 @@ const Demo = () => {
 
   const recentCalls = [
     { 
-      participant: 'John Martinez (VitaFlow)', 
+      participant: 'John Martinez (VACA)', 
       date: '2024-01-15', 
       duration: '45 min', 
       type: 'Pitch Call', 

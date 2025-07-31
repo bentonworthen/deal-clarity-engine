@@ -21,7 +21,7 @@ const ResultsOutput = () => {
   };
 
   const executiveSummary = {
-    company: "VitaFlow",
+    company: "VACA",
     score: 9.2,
     recommendation: "Strong Invest",
     keyStrengths: [
@@ -78,7 +78,7 @@ const ResultsOutput = () => {
               </div>
               <div>
                 <h1 className="text-3xl font-bold text-white mb-2">Analysis Complete</h1>
-                <p className="text-slate-300">VitaFlow deal evaluation ready for review</p>
+                <p className="text-slate-300">VACA deal evaluation ready for review</p>
                 <div className="flex items-center space-x-2 mt-2">
                   <CheckCircle2 className="h-5 w-5 text-green-400" />
                   <span className="text-green-400 text-sm">Analysis validated</span>

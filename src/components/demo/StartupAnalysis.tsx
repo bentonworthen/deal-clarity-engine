@@ -45,7 +45,7 @@ const StartupAnalysis = () => {
         <Card className="bg-white/10 backdrop-blur-md border-white/20">
           <CardContent className="p-12 text-center">
             <div className="animate-spin w-16 h-16 border-4 border-blue-400 border-t-transparent rounded-full mx-auto mb-6"></div>
-            <h2 className="text-2xl font-bold text-white mb-4">Analyzing VitaFlow...</h2>
+            <h2 className="text-2xl font-bold text-white mb-4">Analyzing VACA...</h2>
             <p className="text-slate-300 mb-6">Pulling data from Harmonic API and running AI analysis</p>
             
             <div className="space-y-4 max-w-md mx-auto">
@@ -83,7 +83,7 @@ const StartupAnalysis = () => {
                 VF
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-white mb-2">VitaFlow</h1>
+                <h1 className="text-3xl font-bold text-white mb-2">VACA</h1>
                 <p className="text-slate-300 mb-3">AI-powered healthcare workflow optimization</p>
                 <div className="flex items-center space-x-4">
                   <Badge className="bg-green-600">Series A</Badge>
@@ -265,7 +265,7 @@ const StartupAnalysis = () => {
                   <PolarGrid stroke="#374151" />
                   <PolarAngleAxis dataKey="metric" tick={{ fill: '#9CA3AF' }} />
                   <PolarRadiusAxis tick={{ fill: '#9CA3AF' }} />
-                  <Radar name="VitaFlow" dataKey="value" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.3} strokeWidth={2} />
+                  <Radar name="VACA" dataKey="value" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.3} strokeWidth={2} />
                 </RadarChart>
               </ResponsiveContainer>
             </CardContent>

@@ -63,7 +63,7 @@ const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       >
         <div className="flex h-16 items-center justify-between border-b border-border/20 px-4">
           {!isCollapsed && (
-            <span className="font-heading text-lg font-semibold">Logo</span>
+            <span className="font-heading text-lg font-semibold">VACA</span>
           )}
           <button
             onClick={onToggle}

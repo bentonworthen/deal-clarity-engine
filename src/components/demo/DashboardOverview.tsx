@@ -23,7 +23,7 @@ const DashboardOverview = () => {
   ];
 
   const recentDeals = [
-    { company: 'VitaFlow', sector: 'HealthTech', score: 9.2, status: 'hot' },
+    { company: 'VACA', sector: 'HealthTech', score: 9.2, status: 'hot' },
     { company: 'DataMesh', sector: 'AI/ML', score: 8.8, status: 'warm' },
     { company: 'GreenLab', sector: 'CleanTech', score: 7.4, status: 'cool' },
     { company: 'CloudSync', sector: 'SaaS', score: 8.1, status: 'warm' },

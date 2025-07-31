@@ -37,6 +37,11 @@ const Index = () => {
                   Watch Demo
                 </Button>
               </Link>
+              <Link to="/dashboard">
+                <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10 px-8 py-4 text-lg mr-4">
+                  View Dashboard
+                </Button>
+              </Link>
               <Button size="lg" variant="outline" className="text-white border-white/20 hover:bg-white/10 px-8 py-4 text-lg">
                 Request Access
               </Button>

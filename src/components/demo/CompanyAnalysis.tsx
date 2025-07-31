@@ -174,17 +174,18 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
       </Card>
 
       {/* Analysis Tabs */}
-      <Tabs defaultValue="overview" className="space-y-6">
+      <Tabs defaultValue="company-overview" className="space-y-6">
         <TabsList className="bg-white/80 backdrop-blur-md border-blue-200">
-          <TabsTrigger value="overview" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Overview</TabsTrigger>
-          <TabsTrigger value="sentiment" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Sentiment Analysis</TabsTrigger>
-          <TabsTrigger value="topics" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Key Topics</TabsTrigger>
-          <TabsTrigger value="competitive" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Competitive Position</TabsTrigger>
-          <TabsTrigger value="insights" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">AI Insights</TabsTrigger>
+          <TabsTrigger value="company-overview" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Company Overview</TabsTrigger>
+          <TabsTrigger value="team" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Team</TabsTrigger>
+          <TabsTrigger value="sector-overview" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Sector Overview</TabsTrigger>
+          <TabsTrigger value="product" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Product</TabsTrigger>
+          <TabsTrigger value="inflection-analysis" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">Inflection Analysis</TabsTrigger>
+          <TabsTrigger value="gtm-market-analysis" className="data-[state=active]:bg-blue-600 data-[state=active]:text-white">GTM & Market Analysis</TabsTrigger>
         </TabsList>
 
-        <TabsContent value="overview">
-          <div className="grid md:grid-cols-2 gap-6">
+        <TabsContent value="company-overview">
+          <div className="grid md:grid-cols-2 gap-6 pt-4">
             <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
               <CardHeader>
                 <CardTitle className="text-blue-900">Key Metrics</CardTitle>
@@ -249,7 +250,7 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
           </div>
         </TabsContent>
 
-        <TabsContent value="sentiment">
+        <TabsContent value="team">
           <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-blue-900">Sentiment Timeline</CardTitle>
@@ -278,7 +279,7 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
           </Card>
         </TabsContent>
 
-        <TabsContent value="topics">
+        <TabsContent value="sector-overview">
           <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-blue-900">Topic Analysis</CardTitle>
@@ -314,7 +315,7 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
           </Card>
         </TabsContent>
 
-        <TabsContent value="competitive">
+        <TabsContent value="product">
           <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
             <CardHeader>
               <CardTitle className="text-blue-900">Competitive Analysis vs Industry Benchmark</CardTitle>
@@ -342,7 +343,7 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
           </Card>
         </TabsContent>
 
-        <TabsContent value="insights">
+        <TabsContent value="inflection-analysis">
           <div className="space-y-4">
             {aiInsights.map((insight, idx) => (
               <Card key={idx} className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
@@ -363,6 +364,36 @@ const CompanyAnalysis = ({ companyData, onBack }: CompanyAnalysisProps) => {
               </Card>
             ))}
           </div>
+        </TabsContent>
+
+        <TabsContent value="gtm-market-analysis">
+          <Card className="bg-white/80 backdrop-blur-md border-blue-200 shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-blue-900">GTM & Market Analysis</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                    <h4 className="font-semibold text-blue-900 mb-2">Market Size</h4>
+                    <p className="text-blue-700 text-sm">Total Addressable Market (TAM): $2.5B</p>
+                    <p className="text-blue-700 text-sm">Serviceable Addressable Market (SAM): $450M</p>
+                    <p className="text-blue-700 text-sm">Serviceable Obtainable Market (SOM): $45M</p>
+                  </div>
+                  <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                    <h4 className="font-semibold text-blue-900 mb-2">GTM Strategy</h4>
+                    <p className="text-blue-700 text-sm">Direct sales to enterprise customers</p>
+                    <p className="text-blue-700 text-sm">Partnership with system integrators</p>
+                    <p className="text-blue-700 text-sm">Digital marketing and content strategy</p>
+                  </div>
+                </div>
+                <div className="p-4 bg-blue-50 rounded-lg border border-blue-100">
+                  <h4 className="font-semibold text-blue-900 mb-2">Market Positioning</h4>
+                  <p className="text-blue-700 text-sm">Positioned as a premium solution with advanced AI capabilities, targeting mid to large enterprises seeking to modernize their operations with intelligent automation.</p>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </TabsContent>
       </Tabs>
     </div>

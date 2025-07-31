@@ -24,71 +24,88 @@ import {
 } from 'lucide-react';
 
 import CompanyAnalysis from "@/components/demo/CompanyAnalysis";
+import DealAnalysis from "@/components/demo/DealAnalysis";
 
 const Demo = () => {
   const [selectedCall, setSelectedCall] = useState(null);
+  const [selectedDeal, setSelectedDeal] = useState(null);
 
-  const recentCalls = [
+  const recentDeals = [
     { 
-      participant: 'John Martinez (VitaFlow)', 
+      company: 'Score (Scorealytics, Inc.)', 
       date: '2024-01-15', 
-      duration: '45 min', 
-      type: 'Pitch Call', 
-      status: 'completed',
+      stage: 'Seed', 
+      amount: '$4M', 
+      valuation: '$18M',
+      industry: 'LegalTech / Enterprise Risk Intelligence',
+      location: 'Park City, Utah',
+      status: 'active',
       sentiment: 'positive',
-      keyTopics: ['Product-market fit', 'Revenue growth', 'Team expansion'],
-      insights: 'Strong traction metrics and clear value proposition'
+      keyMetrics: ['$1.8M ARR', '15 enterprise clients', '3 months to $1.8M ARR'],
+      insights: 'Strong traction with enterprise customers, clear product-market fit in legal risk intelligence'
     },
     { 
-      participant: 'Sarah Chen (DataMesh)', 
+      company: 'VitaFlow Technologies', 
       date: '2024-01-14', 
-      duration: '32 min', 
-      type: 'Due Diligence', 
-      status: 'completed',
-      sentiment: 'neutral',
-      keyTopics: ['Technical architecture', 'Scalability', 'Competition'],
-      insights: 'Technical concerns raised about scalability'
-    },
-    { 
-      participant: 'Mike Thompson (GreenLab)', 
-      date: '2024-01-14', 
-      duration: '28 min', 
-      type: 'Follow-up', 
+      stage: 'Series A', 
+      amount: '$12M', 
+      valuation: '$45M',
+      industry: 'HealthTech / Digital Therapeutics',
+      location: 'San Francisco, CA',
       status: 'completed',
       sentiment: 'positive',
-      keyTopics: ['Partnership strategy', 'Market expansion', 'Funding timeline'],
-      insights: 'Positive momentum on partnership discussions'
-    },
-    { 
-      participant: 'Lisa Wang (CloudSync)', 
-      date: '2024-01-13', 
-      duration: '52 min', 
-      type: 'Pitch Call', 
-      status: 'completed',
-      sentiment: 'positive',
-      keyTopics: ['SaaS metrics', 'Customer acquisition', 'Retention rates'],
+      keyMetrics: ['$3.2M ARR', '127 customers', '94% retention'],
       insights: 'Impressive customer retention and growth metrics'
     },
     { 
-      participant: 'David Rodriguez (PayFlow)', 
+      company: 'DataMesh Solutions', 
+      date: '2024-01-13', 
+      stage: 'Series B', 
+      amount: '$25M', 
+      valuation: '$120M',
+      industry: 'Data Infrastructure / AI',
+      location: 'Austin, TX',
+      status: 'in_progress',
+      sentiment: 'neutral',
+      keyMetrics: ['$8.5M ARR', '45 enterprise clients', '2.5x YoY growth'],
+      insights: 'Technical concerns raised about scalability'
+    },
+    { 
+      company: 'GreenLab Systems', 
       date: '2024-01-12', 
-      duration: '38 min', 
-      type: 'Due Diligence', 
+      stage: 'Seed', 
+      amount: '$6M', 
+      valuation: '$24M',
+      industry: 'CleanTech / Industrial IoT',
+      location: 'Boston, MA',
       status: 'completed',
       sentiment: 'positive',
-      keyTopics: ['Regulatory compliance', 'Financial projections', 'Exit strategy'],
-      insights: 'Strong regulatory position and clear path to profitability'
+      keyMetrics: ['$1.2M ARR', '23 customers', 'Partnership momentum'],
+      insights: 'Positive momentum on partnership discussions'
     },
   ];
 
-  const handleCallClick = (call) => {
-    console.log('Navigate to call analytics for:', call.participant);
-    setSelectedCall(call);
+  const handleDealClick = (deal) => {
+    console.log('Navigate to deal analysis for:', deal.company);
+    if (deal.company === 'Score (Scorealytics, Inc.)') {
+      setSelectedDeal(deal);
+    } else {
+      setSelectedCall(deal);
+    }
   };
 
   const handleBackToDemo = () => {
     setSelectedCall(null);
+    setSelectedDeal(null);
   };
+
+  if (selectedDeal) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-snow-white via-white to-gray-50">
+        <DealAnalysis onBack={handleBackToDemo} />
+      </div>
+    );
+  }
 
   if (selectedCall) {
     return (
@@ -163,10 +180,10 @@ const Demo = () => {
               />
             </div>
 
-            {/* Recent Calls */}
+            {/* Recent Deals */}
             <DashboardCard 
-              title="Recent Calls" 
-              subtitle="Latest call activities and insights"
+              title="Recent Deals" 
+              subtitle="Latest deal activities and analysis"
               action={
                 <Button variant="secondary" size="sm">
                   View All
@@ -174,35 +191,39 @@ const Demo = () => {
               }
             >
               <div className="space-y-4">
-                {recentCalls.map((call, idx) => (
+                {recentDeals.map((deal, idx) => (
                   <div 
                     key={idx} 
                     className="flex items-center justify-between p-4 rounded-lg border border-gray-100 hover:border-vat-indigo/20 transition-all duration-300 cursor-pointer"
-                    onClick={() => handleCallClick(call)}
+                    onClick={() => handleDealClick(deal)}
                   >
                     <div className="flex items-center space-x-4">
                       <div className="w-10 h-10 bg-gradient-to-br from-vat-indigo to-mint-tech rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                        <Phone className="h-5 w-5" />
+                        {deal.company.charAt(0)}
                       </div>
                       <div>
-                        <h4 className="font-medium text-gray-900">{call.participant}</h4>
-                        <p className="text-sm text-gray-500">{call.type} • {call.date}</p>
+                        <h4 className="font-medium text-gray-900">{deal.company}</h4>
+                        <p className="text-sm text-gray-500">{deal.industry} • {deal.location}</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-6">
                       <div className="text-right">
-                        <div className="font-mono font-semibold text-gray-900">{call.duration}</div>
-                        <div className="text-sm text-gray-500">Duration</div>
+                        <div className="font-mono font-semibold text-gray-900">{deal.amount}</div>
+                        <div className="text-sm text-gray-500">{deal.stage}</div>
                       </div>
                       <div className="text-right">
-                        <StatusPill status={call.sentiment === 'positive' ? 'b2b' : call.sentiment === 'negative' ? 'reverse-charge' : 'b2c'}>
-                          {call.sentiment}
+                        <div className="font-mono font-semibold text-gray-900">{deal.valuation}</div>
+                        <div className="text-sm text-gray-500">Valuation</div>
+                      </div>
+                      <div className="text-right">
+                        <StatusPill status={deal.sentiment === 'positive' ? 'b2b' : deal.sentiment === 'negative' ? 'reverse-charge' : 'b2c'}>
+                          {deal.sentiment}
                         </StatusPill>
                         <div className="text-sm text-gray-500 mt-1">Sentiment</div>
                       </div>
                       <div className="text-right">
-                        <StatusPill status={call.status === 'completed' ? 'b2b' : 'b2c'}>
-                          {call.status}
+                        <StatusPill status={deal.status === 'completed' ? 'b2b' : deal.status === 'active' ? 'b2c' : 'reverse-charge'}>
+                          {deal.status}
                         </StatusPill>
                         <div className="text-sm text-gray-500 mt-1">Status</div>
                       </div>
